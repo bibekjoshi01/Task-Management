@@ -1,0 +1,52 @@
+    <style>
+    #title{
+        font-size: 20px;
+        color: #000;
+        font-weight: 600;
+        padding: 20px; 
+        text-decoration: none; 
+
+    }
+    .link{
+        text-decoration: none;
+    }
+    </style>
+
+
+    <h1> My Tasks </h1> 
+
+    <div> 
+    {{complete}} task{{complete|pluralize:"s" }} completed and {{incomplete}} task{{incomplete|pluralize:"s" }}  remaining 
+
+    </div>
+
+    <br>
+
+
+    <div style="margin-bottom: 10px;">
+    <a href="{% url 'create_task' %}"> <input type="button" value="Add New Task"></a>
+    </div>
+
+    {% for task in tasks %}
+
+    <li>
+    {% if task.complete %}
+
+    <strike> <a href="" id="title">{{task.title}}</a></strike>
+    <a href="{% url 'update_task' task.id  %}" class="link"><input type="button" value="Edit"> </a> 
+    <a href="{% url 'delete_task' task.id  %}" class="link"> <input type="button" value="Delete">  </a> 
+
+    {% else %}
+
+    <a href="" id="title">{{task.title}}</a>
+    <a href="{% url 'update_task' task.id  %}" class="link"><input type="button" value="Edit"> </a> 
+    <a href="{% url 'delete_task' task.id  %}" class="link"> <input type="button" value="Delete">  </a> 
+
+    {% endif %}
+
+    </li> 
+
+    {% empty %}
+    <p> No items listed </p>
+
+    {% endfor %}

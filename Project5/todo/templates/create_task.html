@@ -1,0 +1,13 @@
+<div> 
+    <h2> Add New Task </h2> 
+</div>
+
+<div>
+    <form method='POST'>
+        {% csrf_token %}
+
+        {{form.as_p }}
+
+        <input type="submit" value="Create"> 
+    </form>
+</div>
